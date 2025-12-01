@@ -1,0 +1,2 @@
+The value inside func: 30
+The value inside main: 30
