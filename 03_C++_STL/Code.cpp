@@ -333,7 +333,7 @@ void explainUnorderedMap(){
     //56
 }
 
-bool comp(pair<int,int> p1 , pair<int ,int> p2){
+bool static comp(pair<int,int> &p1 , pair<int ,int> &p2){
         if(p1.second<p2.second){
             return true;
         }
