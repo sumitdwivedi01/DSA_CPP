@@ -45,37 +45,39 @@
 // };
 
 //most optimal approach //Moore's voting algorithm
-class Solution {
-public:
-    int majorityElement(vector<int>& arr) {
-        int n=arr.size();
-        //applying moore's algorithm
-        int elem=0;
-        int cnt=0;
-        for(int i=0;i<n;i++){
-            if(cnt==0){
-                elem=arr[i];
-                cnt=1;
-                continue;
-            }
-            if(arr[i]==elem){
-                cnt++;
-            }
-            else{
-                cnt--;
-            }
-        }
-        //not here needed but if there is a case that majority element could be exist or could not be then we should confirm the element is majority or not
-        int mc=0;
-        for(int i=0;i<n;i++){
-            if(arr[i]==elem){
-                mc++;
-            }
-        }
-        if(mc>n/2)return elem;//checking is the element is acutally majority or not if this will be the majority ok otherwise no element is going to be majority
-        return -1;
-    }
-};
+// class Solution {
+// public:
+//     int majorityElement(vector<int>& arr) {
+//         int n=arr.size();
+//         //applying moore's algorithm
+//         int elem=0;
+//         int cnt=0;
+//         for(int i=0;i<n;i++){
+//             if(cnt==0){
+//                 elem=arr[i];
+//                 cnt=1;
+//                 continue;
+//             }
+//             if(arr[i]==elem){
+//                 cnt++;
+//             }
+//             else{
+//                 cnt--;
+//             }
+//         }
+//         //not here needed but if there is a case that majority element could be exist or could not be then we should confirm the element is majority or not
+//         int mc=0;
+//         for(int i=0;i<n;i++){
+//             if(arr[i]==elem){
+//                 mc++;
+//             }
+//         }
+//         if(mc>n/2)return elem;//checking is the element is acutally majority or not if this will be the majority ok otherwise no element is going to be majority
+//         return -1;
+//     }
+// };
+
+
 // #include <bits/stdc++.h>
 // using namespace std;
  
@@ -109,9 +111,6 @@ public:
 //     int ans=tn-n;
 //     cout<<ans<<endl;
     
-    
-    
-
 // }
 
 // int main(){
@@ -129,3 +128,57 @@ public:
 
 //     return 0;
 // }
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int gcd(int a, int b) {
+if (b == 0) return a;
+return gcd(b, a % b);
+}
+ 
+void solve(){
+    int n;
+    cin>>n;
+    vector<int> arr(n);
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    if(n==2){
+        cout<<0<<endl;
+        return;
+    }
+    int d=INT_MAX;
+    for(int i=n-1;i>0;i--){
+        int diff=arr[i]-arr[i-1];
+        d=min(diff,d);
+    }
+    int min_d=d;
+    for(int i=n-1;i>0;i--){
+        int diff=arr[i]-arr[i-1];
+        min_d=gcd(min_d,diff);
+    }
+    int an=arr[n-1];
+    int a=arr[0];
+    d=min_d;
+    int tn=((an-a)/d)+1;
+    int ans=tn-n;
+    cout<<ans<<endl;
+}
+
+int main(){
+    
+    int t;
+
+    cin>>t;
+
+
+    while(t--){
+
+        solve();
+    }
+
+
+    return 0;
+}
