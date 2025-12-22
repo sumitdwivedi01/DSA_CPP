@@ -6,11 +6,11 @@ int part(vector<int> &arr ,int low , int high){
     int i=low;
     int j=high;
     while(i<j){
-        while(arr[i]<=pivote && i<=high){//choosing the element which is the 1st greater than the pivote to send it to the right of the pivote element
+        while(i<high && arr[i]<=pivote ){//choosing the element which is the 1st greater than the pivote to send it to the right of the pivote element
             i++;
         }
 
-        while(arr[j]>pivote && j>=low){//checking for element less than pivote from the last  & taking it if element is greater than pivote leaving it
+        while( j>low &&arr[j]>=pivote ){//checking for element less than pivote from the last  & taking it if element is greater than pivote leaving it
             j--;
         }
         if(i<j){//but swapping if the i < j because if cross each other then it's not the case cause already in the right place
